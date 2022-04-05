@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aut.mybatis.mappers.SelectMapper">
+
+<!--  user getUserById(@Param("id") Integer id);   -->
+    <select id="getUserById" resultType="user">
+        select * from mybatis_user where id = #{id}
+
+    </select>
+<!--List<user> getUserListById();-->
+    <select id="getUserListById" resultType="user">
+        select * from mybatis_user
+    </select>
+
+<!--Integer getCount();-->
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from mybatis_user
+    </select>
+
+<!--    Map<String , Object> getUseridTOMap(Integer id);-->
+    <select id="getUseridTOMap" resultType="map">
+        select * from mybatis_user where id = #{id}
+    </select>
+
+<!--      Map<String,Object> getAllUser();-->
+    <select id="getAllUser" resultType="map">
+        select * from mybatis_user
+    </select>
+
+<!--       List<user> getUserByList(@Param("UserName") String UserName); -->
+    <select id="getUserByList" resultType="user">
+        select * from mybatis_user where name like '%${name}%'
+
+    </select>
+
+<!--    int deleteMore(@Param("ids") String ids);-->
+    <delete id="deleteMore">
+        delete from mybatis_user where id in (${ids})
+    </delete>
+
+<!--    List<user> getUserByTableName(@Param("TableName") String TableName);-->
+    <select id="getUserByTableName" resultType="user">
+        select * from ${TableName}
+    </select>
+
+</mapper>
